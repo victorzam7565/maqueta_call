@@ -1,11 +1,51 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { Typography, Button, AppBar, Tabs,Tab} from '@mui/material'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useState } from 'react'
+import StandaloneToggleButton from '@/components/togle';
+import {ToggleButtonNotEmpty} from '@/components/togle2';
+import { makeStyles } from '@material-ui/core/styles';
+import LaptopIcon from '@material-ui/icons/Laptop';
+import TvIcon from '@material-ui/icons/Tv';
+import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
+import Grid from '@material-ui/core/Grid';
+import { ToggleButton } from '@mui/lab';
+import {ToggleButtonGroup} from '@mui/lab';
+
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export default function Home() {
+
+
+  const[estilos,setEstilos]=useState({
+    width:500,
+    backgroundColor:'yellow' })
+   
+   
+  const cambiarAncho=(ancho:any)=>{
+    const estilosCopia={...estilos};
+    estilosCopia.width=ancho;
+    setEstilos(estilosCopia);
+    }
+
+    
+
+  let buttonStyle={
+    backgroundColor: 'blue'
+  }
+
+{
+
+
   return (
     <>
       <Head>
@@ -15,109 +55,99 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
+
+<Box height="100vh" display="flex" flexDirection="column"
+sx={{position: "absolute"}} >
+<Typography variant="h5">Simple centered CTA</Typography>
+<Typography variant="caption" display="block">
+<FolderOpenIcon></FolderOpenIcon>         ./src/blocks/cta/CtaSimpleCentered/CtaSimpleCentered.js|ts</Typography>
+
+<Box sx={{ bgcolor: 'white',
+ height: 500,width:1250 ,
+ borderColor: 'primary.main' ,
+ borderRadius:2, 
+ border: 1}}> 
+ 
+ <Box height={70}
+  sx={{ borderBottom: 1  }}>
+
+
+ <Box
+  m={2} //margin
+  display="flex"
+  justifyContent="flex-start"
+  alignItems="flex-start"
+  
+>
+
+ <Button variant="contained" color="secondary"
+ endIcon={<ArrowForwardIcon/>}>
+Get the code 
+</Button>
+ </Box>
+
+<Box  m={2}
+  display="flex"
+  justifyContent="flex-end"
+  alignItems="flex-end"
+  sx={{ position: "relative", bottom:50 }}>
+<StandaloneToggleButton></StandaloneToggleButton>
+</Box>
+
+
+<Box  
+sx={{ position: "relative",left:380, bottom:115 }} >
+
+<Grid container spacing={2}>
+ <Grid item sm={12} md={6}>
+</Grid>
+<Grid item sm={12} md={6}>
+<ToggleButtonGroup >
+<ToggleButton value="laptop" aria-label="laptop">
+<LaptopIcon 
+            onClick=
+            {(e)=>cambiarAncho(400)} />
+            </ToggleButton >
+            <ToggleButton value="tv" aria-label="tv">
+              <TvIcon
+              onClick=
+              {(e)=>cambiarAncho(500)} 
               />
-            </a>
-          </div>
-        </div>
+            </ToggleButton>
+            <ToggleButton >
+              <PhoneAndroidIcon  
+              onClick=
+              {(e)=>cambiarAncho(600)}/>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Grid>
+    </Grid>
+</Box>
+ </Box>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
+<Box id="app-content" style={estilos}>
+hola
+<Typography variant='h1'>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+</Typography> </Box>
+ 
+ 
+ 
+
+
+ </Box>
+
+
+
+      </Box>
+
       </main>
     </>
   )
+}
+
+
 }
